@@ -1,0 +1,17 @@
+version: '3'
+services:
+  vulnerable:
+    build:
+      context: ./victim/
+      dockerfile: Dockerfile
+    container_name: victim
+    command: /usr/bin/python3 server.py
+
+  attacker:
+    build:
+      context: ./attacker/
+      dockerfile: Dockerfile
+    container_name: attacker
+    stdin_open: true
+    tty: true
+    command: /bin/bash
